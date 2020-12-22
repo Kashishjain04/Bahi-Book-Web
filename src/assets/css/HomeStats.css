@@ -1,0 +1,24 @@
+.numbers {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.2rem;
+  background-color: #ececec;
+  padding: 10px;
+}
+
+.number__item {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 26vw;
+  height: 7vw;
+  padding: 10px;
+  color: #ababab;
+}
+
+.number__item__text {
+  color: #ababab;
+}

@@ -1,0 +1,30 @@
+.add__customer {
+  margin: auto;
+  margin-top: 30vh;
+  padding: 20px;
+  background-color: #fff;
+  width: 40%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.add__customer > h2 {
+  margin-top: 0;
+}
+
+.add__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add__form > input {
+  margin: 5px 0;
+  height: 30px;
+  padding: 1px 10px;
+  border-radius: 5px;
+  border-width: 1px;
+}
+
+.add__form .MuiButtonGroup-root {
+  justify-content: space-evenly;
+}

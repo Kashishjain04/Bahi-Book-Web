@@ -1,0 +1,48 @@
+.trans__card {
+  color: #000;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 26vw;
+  background-color: #fff;
+}
+
+.trans__time {
+  text-align: end;
+  margin-top: -5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.trans__details {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.trans__amount {
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.trans__amount.positive {
+  color: #3f8600;
+}
+.trans__amount.negative {
+  color: #cf1322;
+}
+
+.trans__img {
+  width: 100%;
+  max-width: 100px;
+  transition: all 0.25s;
+}
+
+.trans__img:hover {
+  box-shadow: 3px 3px 10px #ababab;
+}
+
+@media only screen and (max-width: 420px) {
+  .trans__amount {
+    font-size: 1rem;
+  }
+}

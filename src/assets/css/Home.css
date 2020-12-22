@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Langar&display=swap");
+
+.head {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.head__text {
+  font-family: "Langar", cursive;
+  font-size: 2.5rem;
+  margin-left: 40px;
+}
+
+.head > .avatar {
+  margin-right: 20px;
+  width: 9rem;
+  height: 9rem;
+}
+
+.head > .logout {
+  font-size: 1.75rem;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: black;
+}
+
+.logout:focus {
+  outline: none;
+}
+
+.customers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: #ececec;
+}

@@ -1,0 +1,14 @@
+.customer__name {
+  font-family: "Langar", cursive;
+  text-align: center;
+  font-size: 3rem;
+  margin-left: 40px;
+}
+
+.transactions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: #ececec;
+}
