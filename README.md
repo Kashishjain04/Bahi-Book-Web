@@ -1,4 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Bahi Book
+![](https://firebasestorage.googleapis.com/v0/b/bahi-book.appspot.com/o/icon.png?alt=media&token=13344b24-3410-4047-957a-e6447432c4e7)
+
+Account manager website, where you can track payments along your friends.
+- Have a look at the website: [https://bahi-book.web.app](https://bahi-book.web.app)
+- Use `test@user.com` as customer ID to test
 
 ## Available Scripts
 
