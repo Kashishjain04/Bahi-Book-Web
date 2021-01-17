@@ -1,5 +1,6 @@
 import { Statistic } from "antd";
 import React from "react";
+import ShowMoreText from "react-show-more-text";
 import "../assets/css/TransactionCard.css";
 
 function DisplayTransaction({ details }) {
@@ -10,6 +11,7 @@ function DisplayTransaction({ details }) {
       </p>
       <div className="trans__details">
         <Statistic
+          style={{ margin: details.receipt === "" && "15px auto" }}
           className={
             details.amount >= 0
               ? "positive trans__amount"
@@ -21,6 +23,20 @@ function DisplayTransaction({ details }) {
           <a rel="noreferrer" href={details.receipt} target="_blank">
             <img className="trans__img" src={details.receipt} alt="receipt" />
           </a>
+        )}
+        {details.desc !== "" && (
+          <ShowMoreText
+            className={
+              details.receipt === "" ? "noreceipt trans__desc" : "trans__desc"
+            }
+            lines={2}
+            more="More"
+            less="Less"
+            anchorClass="trans__desc"
+            expanded={false}
+          >
+            {details.desc}
+          </ShowMoreText>
         )}
       </div>
     </div>

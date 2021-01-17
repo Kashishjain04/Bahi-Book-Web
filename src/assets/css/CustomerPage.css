@@ -1,5 +1,14 @@
-.customer__name {
+.head .home {
+  font-size: 1.75rem;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: var(--logout-btn) !important;
+}
+
+.head .customer__name {
   font-family: "Langar", cursive;
+  width: 100%;
   text-align: center;
   font-size: 3rem;
   margin-left: 40px;
@@ -10,5 +19,5 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 10px;
-  background-color: #ececec;
+  background-color: var(--container-bg);
 }

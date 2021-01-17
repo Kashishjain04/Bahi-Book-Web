@@ -23,7 +23,10 @@ function HomeStats({ sent, received }) {
         <Statistic
           title="Balance"
           value={received - sent}
-          valueStyle={{ color: "#2196f3", textAlign: "center" }}
+          valueStyle={{
+            color: received >= sent ? "#3f8600" : "#cf1322",
+            textAlign: "center",
+          }}
         />
       </div>
     </div>

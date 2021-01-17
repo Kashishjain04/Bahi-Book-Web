@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AddTransaction from "../Components/AddTransaction";
 import DisplayTransaction from "../Components/DisplayTransaction";
 import firebase from "../firebase";
 import { selectUser } from "../redux/userSlice";
-import "../assets/css/CustomerPage.css";
 import HomeStats from "../Components/HomeStats";
-import { Modal } from "@material-ui/core";
+import { IconButton, Modal } from "@material-ui/core";
 import AddCard from "../Components/AddCard";
+import TransactionLoadingCard from "../Components/TransactionLoadingCard";
+import { HomeOutlined } from "@ant-design/icons";
+import "../assets/css/CustomerPage.css";
 
 const db = firebase.firestore;
 
@@ -19,7 +21,8 @@ function CustomerPage() {
     [trans, setTrans] = useState([]),
     [sent, setSent] = useState(0),
     [received, setReceived] = useState(0),
-    [modalVisible, setModalVisible] = useState(false);
+    [modalVisible, setModalVisible] = useState(false),
+    [transLoading, setTransLoading] = useState(true);
 
   useEffect(() => {
     const custRef = db()
@@ -45,12 +48,14 @@ function CustomerPage() {
             amount: doc.data().amount,
             receipt: doc.data().receipt,
             timestamp: doc.data().timestamp,
+            desc: doc.data().desc,
           });
           doc.data().amount >= 0
             ? setReceived((prev) => prev + Number(doc.data().amount))
             : setSent((prev) => prev - Number(doc.data().amount));
         });
         setTrans(transactions);
+        setTransLoading(false);
       });
     return function cleanup() {
       setTrans([]);
@@ -60,14 +65,27 @@ function CustomerPage() {
 
   return (
     <div>
-      <h1 className="customer__name">{name}</h1>
+      <div className="head">
+        <h1 className="customer__name">{name}</h1>
+        <IconButton className="home">
+          <Link to="/">
+            <HomeOutlined />
+          </Link>
+        </IconButton>
+      </div>
       <HomeStats sent={sent} received={received} />
       <h1 className="subheading">Transactions</h1>
       <div className="transactions">
-        {trans.map((t) => (
-          <DisplayTransaction key={t.id} details={t} />
-        ))}
-        <AddCard onClick={() => setModalVisible(true)} />
+        {transLoading === false ? (
+          <>
+            {trans.map((t) => (
+              <DisplayTransaction key={t.id} details={t} />
+            ))}
+            <AddCard onClick={() => setModalVisible(true)} />
+          </>
+        ) : (
+          <TransactionLoadingCard />
+        )}
       </div>
       <Modal
         open={modalVisible}

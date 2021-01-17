@@ -9,7 +9,7 @@ function DisplayCustomer({ details }) {
       <p>
         Balance:{" "}
         <span className={details.balance >= 0 ? "positive" : "negative"}>
-          {details.balance}
+          {Math.abs(details.balance)}
         </span>
       </p>
     </Link>

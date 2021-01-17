@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-evenly;
   font-size: 1.2rem;
-  background-color: #ececec;
+  background-color: var(--container-bg);
   padding: 10px;
 }
 
@@ -11,14 +11,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: var(--card-bg);
   border-radius: 5px;
   width: 26vw;
   height: 7vw;
   padding: 10px;
-  color: #ababab;
-}
-
-.number__item__text {
-  color: #ababab;
+  color: var(--secondary-text);
 }

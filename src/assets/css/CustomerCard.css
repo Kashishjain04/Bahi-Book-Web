@@ -1,16 +1,16 @@
 .customer__card {
   text-decoration: none;
-  color: #000;
+  color: var(--card-text);
   padding: 0 10px;
   margin: 10px;
   border-radius: 5px;
   width: 26vw;
-  background-color: #fff;
+  background-color: var(--card-bg);
   transition: all 0.25s;
 }
 
 .customer__card:hover {
-  box-shadow: 3px 3px 10px #ababab;
+  box-shadow: 3px 3px 20px var(--shadow-color);
 }
 
 .customer__card > p {
@@ -19,11 +19,11 @@
 }
 
 .customer__card .positive {
-  color: #3f8600;
+  color: var(--positive);
 }
 
 .customer__card .negative {
-  color: #cf1322;
+  color: var(--negative);
 }
 
 .customer__card > h2 {

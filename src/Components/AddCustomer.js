@@ -12,20 +12,9 @@ function AddCustomer({ hideModal }) {
     user = useSelector(selectUser),
     [ID, setID] = useState(""),
     [name, setName] = useState(""),
-    [names, setNames] = useState([]),
-    [ids, setIds] = useState([]),
-    [disabled, disable] = useState(false);
+    [ids, setIds] = useState([]);
 
   useEffect(() => {
-    db()
-      .collection("users")
-      .onSnapshot((snap) => {
-        const tNames = [];
-        snap.forEach((doc) =>
-          tNames.push({ id: doc.id, name: doc.data().name })
-        );
-        setNames(tNames);
-      });
     db()
       .collection("users")
       .doc(user.email)
@@ -39,8 +28,9 @@ function AddCustomer({ hideModal }) {
       });
     return () => {
       _isMounted.current = false;
-      setNames([]);
+      setIds([]);
     };
+    // eslint-disable-next-line
   }, [user.email]);
 
   const submitHandler = (e) => {
@@ -61,36 +51,31 @@ function AddCustomer({ hideModal }) {
         .collection("customers")
         .doc(ID)
         .set({ name, balance: 0 });
-      db()
-        .collection("users")
-        .doc(ID)
-        .set({ name, sent: 0, received: 0 }, { merge: true });
-      db()
-        .collection("users")
-        .doc(ID)
-        .collection("customers")
-        .doc(user.email)
-        .set({ name: user.name, balance: 0 })
-        .catch((err) => console.log(err.message));
+
+      // // //ALL THIS IS NOW DONE USING CLOUD FUNCTIONS // // // // //
+      //                                                             //
+      // db().collection("users").doc(ID).set({}, { merge: true });  //
+      // db()                                                        //
+      //   .collection("users")                                      //
+      //   .doc(ID)                                                  //
+      //   .collection("customers")                                  //
+      //   .doc(user.email)                                          //
+      //   .set({ name: user.name, balance: 0 })                     //
+      //   .catch((err) => console.log(err.message));                //
+      //                                                             //
+      // // // // // // // // // // // // // // // // // // // // // //
     }
   };
 
   const changeID = (e) => {
-    const id = e.target.value;
+    const id = e.target.value.toLowerCase();
     setID(id);
-    disable(false);
-    names.forEach((n) => {
-      if (n.id === ID) {
-        setName(n.name);
-        disable(true);
-      }
-    });
   };
 
   const form = (
     <form className="add__form" onSubmit={submitHandler}>
       <input
-        type="text"
+        type="email"
         placeholder="Customer ID"
         value={ID}
         onChange={changeID}
@@ -101,7 +86,6 @@ function AddCustomer({ hideModal }) {
         placeholder="Customer Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        disabled={disabled}
         required
       />
       <Button style={{ marginTop: "5px" }} variant="outlined" type="submit">

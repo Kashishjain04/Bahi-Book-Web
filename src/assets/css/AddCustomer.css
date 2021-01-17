@@ -2,7 +2,7 @@
   margin: auto;
   margin-top: 30vh;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--card-bg);
   width: 40%;
   max-width: 400px;
   border-radius: 10px;

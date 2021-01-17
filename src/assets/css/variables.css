@@ -1,0 +1,26 @@
+html.light {
+  background-color: #ffffff;
+  color: #000000;
+  --card-text: #000000;
+  --secondary-text: #ababab;
+  --logout-btn: #000000;
+  --positive: #3f8600;
+  --negative: #cf1322;
+  --timestamp-text: #666666;
+  --card-bg: #ffffff;
+  --container-bg: #ececec;
+  --shadow-color: #ababab;
+}
+html.dark {
+  background-color: #34353f;
+  color: #ffffff;
+  --card-text: #ffffff;
+  --secondary-text: #ababab;
+  --logout-btn: #ffffff;
+  --positive: #3f8600;
+  --negative: #cf1322;
+  --timestamp-text: #666666;
+  --card-bg: #34353f;
+  --container-bg: #26262c;
+  --shadow-color: #131313;
+}

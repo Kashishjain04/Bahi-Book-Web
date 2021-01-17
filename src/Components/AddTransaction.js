@@ -14,18 +14,19 @@ function AddTransaction({ hideModal }) {
     user = useSelector(selectUser),
     [amount, setAmount] = useState(0),
     [file, setFile] = useState(null),
+    [desc, setDesc] = useState(""),
     custRef = db()
       .collection("users")
       .doc(user.email)
       .collection("customers")
       .doc(custID),
-    transRef = custRef.collection("transactions").doc(),
-    selfRef = db()
-      .collection("users")
-      .doc(custID)
-      .collection("customers")
-      .doc(user.email),
-    selfTransRef = selfRef.collection("transactions").doc(transRef.id);
+    transRef = custRef.collection("transactions").doc();
+  // selfRef = db()
+  //   .collection("users")
+  //   .doc(custID)
+  //   .collection("customers")
+  //   .doc(user.email);
+  // selfTransRef = selfRef.collection("transactions").doc(transRef.id);
 
   const handleUpload = (e) => {
     setFile(e.target.files[0]);
@@ -46,33 +47,40 @@ function AddTransaction({ hideModal }) {
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       amount: amt,
       receipt: url,
+      desc,
     });
-    selfTransRef.set({
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      amount: -1 * amt,
-      receipt: url,
-    });
-    if (sending) {
-      db()
-        .collection("users")
-        .doc(user.email)
-        .update({ sent: db.FieldValue.increment(Math.abs(amt)) });
-      db()
-        .collection("users")
-        .doc(custID)
-        .update({ received: db.FieldValue.increment(Math.abs(amt)) });
-    } else {
-      db()
-        .collection("users")
-        .doc(user.email)
-        .update({ received: db.FieldValue.increment(Math.abs(amt)) });
-      db()
-        .collection("users")
-        .doc(custID)
-        .update({ sent: db.FieldValue.increment(Math.abs(amt)) });
-    }
-    custRef.update({ balance: db.FieldValue.increment(amt) });
-    selfRef.update({ balance: db.FieldValue.increment(-1 * amt) });
+
+    // // // ALL THIS IS NOW DONE USING CLOUD FUNCTIONS // // //
+
+    // selfTransRef.set({
+    //   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    //   amount: -1 * amt,
+    //   receipt: url,
+    //   desc,
+    // });
+    // if (sending) {
+    //   db()
+    //     .collection("users")
+    //     .doc(user.email)
+    //     .update({ sent: db.FieldValue.increment(Math.abs(amt)) });
+    //   db()
+    //     .collection("users")
+    //     .doc(custID)
+    //     .update({ received: db.FieldValue.increment(Math.abs(amt)) });
+    // } else {
+    //   db()
+    //     .collection("users")
+    //     .doc(user.email)
+    //     .update({ received: db.FieldValue.increment(Math.abs(amt)) });
+    //   db()
+    //     .collection("users")
+    //     .doc(custID)
+    //     .update({ sent: db.FieldValue.increment(Math.abs(amt)) });
+    // }
+    // custRef.update({ balance: db.FieldValue.increment(amt) });
+    // selfRef.update({ balance: db.FieldValue.increment(-1 * amt) });
+
+    // // // // // // // // // // // // // // // // // // // // //
   };
 
   const handleSubmit = (e, sending) => {
@@ -87,7 +95,9 @@ function AddTransaction({ hideModal }) {
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log(progress);
         },
-        function error(err) {},
+        function error(err) {
+          console.log(err);
+        },
         function complete() {
           storageRef
             .getDownloadURL()
@@ -112,6 +122,14 @@ function AddTransaction({ hideModal }) {
         placeholder="amount"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
+      />
+      <hr />
+      <label htmlFor="desc">Description:</label>
+      <input
+        type="text"
+        placeholder="Description of the transaction"
+        value={desc}
+        onChange={(e) => setDesc(e.target.value)}
       />
       <hr />
       <label htmlFor="receipt">Receipt:</label>

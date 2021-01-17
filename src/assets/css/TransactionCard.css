@@ -1,22 +1,24 @@
 .trans__card {
-  color: #000;
+  color: var(--card-text);
   padding: 10px;
-  margin: 10px;
+  margin: 10px 5px;
   border-radius: 5px;
   width: 26vw;
-  background-color: #fff;
+  background-color: var(--card-bg);
+  transition: all 0.25s;
 }
 
 .trans__time {
   text-align: end;
   margin-top: -5px;
   font-size: 12px;
-  color: #666;
+  color: var(--timestamp-text);
 }
 
 .trans__details {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .trans__amount {
@@ -25,10 +27,10 @@
 }
 
 .trans__amount.positive {
-  color: #3f8600;
+  color: var(--positive);
 }
 .trans__amount.negative {
-  color: #cf1322;
+  color: var(--negative);
 }
 
 .trans__img {
@@ -38,11 +40,20 @@
 }
 
 .trans__img:hover {
-  box-shadow: 3px 3px 10px #ababab;
+  box-shadow: 3px 3px 20px var(--shadow-color);
 }
 
-@media only screen and (max-width: 420px) {
+.trans__desc {
+  word-wrap: break-word;
+  width: 100%;
+  transition: all 0.25s;
+}
+
+@media only screen and (max-width: 520px) {
   .trans__amount {
     font-size: 1rem;
+  }
+  .trans__desc.noreceipt {
+    margin-top: 35px;
   }
 }

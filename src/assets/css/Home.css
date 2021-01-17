@@ -18,12 +18,12 @@
   height: 9rem;
 }
 
-.head > .logout {
+.head .logout {
   font-size: 1.75rem;
   position: absolute;
   top: 25px;
   right: 25px;
-  color: black;
+  color: var(--logout-btn);
 }
 
 .logout:focus {
@@ -35,5 +35,12 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 10px;
-  background-color: #ececec;
+  background-color: var(--container-bg);
+}
+
+@media only screen and (max-width: 520px) {
+  .head .logout {
+    top: 15px;
+    right: 15px;
+  }
 }
