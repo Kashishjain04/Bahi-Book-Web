@@ -1,9 +1,13 @@
 import { Statistic } from "antd";
 import React from "react";
 import ShowMoreText from "react-show-more-text";
+import { ReceiptOutlined } from "@material-ui/icons";
 import "../assets/css/TransactionCard.css";
 
 function DisplayTransaction({ details }) {
+  const validateImageUrl = (url) =>
+    url.split("?")[0].match(/\.(jpeg|jpg|gif|png)$/) != null;
+
   return (
     <div className="trans__card">
       <p className="trans__time">
@@ -11,7 +15,6 @@ function DisplayTransaction({ details }) {
       </p>
       <div className="trans__details">
         <Statistic
-          style={{ margin: details.receipt === "" && "15px auto" }}
           className={
             details.amount >= 0
               ? "positive trans__amount"
@@ -19,9 +22,9 @@ function DisplayTransaction({ details }) {
           }
           value={Math.abs(details.amount)}
         />
-        {details.receipt !== "" && (
+        {validateImageUrl(details.receipt) && (
           <a rel="noreferrer" href={details.receipt} target="_blank">
-            <img className="trans__img" src={details.receipt} alt="receipt" />
+            <ReceiptOutlined className="trans__receipt" />
           </a>
         )}
         {details.desc !== "" && (
