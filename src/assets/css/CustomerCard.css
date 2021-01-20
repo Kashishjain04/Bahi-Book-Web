@@ -4,7 +4,7 @@
   padding: 0 10px;
   margin: 10px;
   border-radius: 5px;
-  width: 26vw;
+  width: 21vw;
   background-color: var(--card-bg);
   transition: all 0.25s;
 }
@@ -29,6 +29,7 @@
 .customer__card > h2 {
   font-weight: lighter;
   font-family: "Langar", cursive;
+  word-break: break-word;
   margin-bottom: 0;
 }
 
@@ -43,4 +44,10 @@
 .customer__card .add__icon {
   text-align: center;
   font-size: 2rem;
+}
+
+@media only screen and (max-width: 520px) {
+  .customer__card > h2 {
+    font-size: 1.3rem;
+  }
 }

@@ -18,3 +18,12 @@
   padding: 10px;
   color: var(--secondary-text);
 }
+
+@media only screen and (max-width: 520px) {
+  .ant-statistic-title {
+    font-size: 0.85rem;
+  }
+  .ant-statistic-content-value-int {
+    font-size: 0.85rem;
+  }
+}
