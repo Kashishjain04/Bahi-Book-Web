@@ -7,7 +7,11 @@ function DisplayCustomer({ details }) {
     <Link className="customer__card" to={"/customer/" + details.id}>
       <h2>{details.name}</h2>
       <p>
-        Balance:{" "}
+        {details.balance === 0
+          ? "Balance: "
+          : details.balance > 0
+          ? "You Will Give: "
+          : "You Will Get: "}
         <span className={details.balance >= 0 ? "positive" : "negative"}>
           {Math.abs(details.balance)}
         </span>
