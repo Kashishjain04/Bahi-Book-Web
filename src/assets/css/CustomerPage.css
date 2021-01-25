@@ -3,7 +3,7 @@
   position: absolute;
   top: 25px;
   right: 25px;
-  color: var(--logout-btn) !important;
+  color: var(--logout-btn);
 }
 
 .head .customer__name {
@@ -20,4 +20,11 @@
   justify-content: space-evenly;
   padding: 10px;
   background-color: var(--container-bg);
+}
+
+@media only screen and (max-width: 520px) {
+  .head .home {
+    top: 5px;
+    right: 5px;
+  }
 }
