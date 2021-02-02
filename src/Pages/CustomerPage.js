@@ -11,6 +11,7 @@ import AddCard from "../Components/AddCard";
 import TransactionLoadingCard from "../Components/TransactionLoadingCard";
 import { HomeOutlined } from "@ant-design/icons";
 import "../assets/css/CustomerPage.css";
+import NotFound from "./NotFound";
 
 const db = firebase.firestore;
 
@@ -22,7 +23,8 @@ function CustomerPage() {
     [sent, setSent] = useState(0),
     [received, setReceived] = useState(0),
     [modalVisible, setModalVisible] = useState(false),
-    [transLoading, setTransLoading] = useState(true);
+    [transLoading, setTransLoading] = useState(true),
+    [exists, setExist] = useState(true);
 
   useEffect(() => {
     const custRef = db()
@@ -33,6 +35,8 @@ function CustomerPage() {
     custRef.onSnapshot((snap) => {
       if (snap.exists) {
         setName(snap.data().name);
+      } else {
+        setExist(false);
       }
     });
     custRef
@@ -63,7 +67,9 @@ function CustomerPage() {
     };
   }, [user, custID]);
 
-  return (
+  return !exists ? (
+    <NotFound />
+  ) : (
     <div>
       <div className="head">
         <h1 className="customer__name">{name}</h1>

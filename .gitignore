@@ -27,3 +27,4 @@ yarn-error.log*
 */firebase-messaging-sw.js
 *.cache
 .eslintcache
+*.log

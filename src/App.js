@@ -10,6 +10,7 @@ import { CircularProgress } from "@material-ui/core";
 import { useMediaQuery } from "react-responsive";
 import "./App.css";
 import "./assets/css/variables.css";
+import NotFound from "./Pages/NotFound";
 
 const auth = firebase.auth;
 
@@ -56,12 +57,14 @@ function App() {
   const authRoute = (
     <Switch>
       <Route path="/" exact component={Login} />
+      <Route path="*" component={NotFound} />
     </Switch>
   );
   const appRoute = (
     <Switch>
       <Route path="/" exact component={HomePage} />
       <Route path="/customer/:custID" exact component={CustomerPage} />
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 
