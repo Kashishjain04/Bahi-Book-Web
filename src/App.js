@@ -57,6 +57,7 @@ function App() {
   const authRoute = (
     <Switch>
       <Route path="/" exact component={Login} />
+      <Route path="/customer/:custID" exact component={Denied} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
