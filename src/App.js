@@ -8,7 +8,6 @@ import { login, logout, selectUser } from "./redux/userSlice";
 import Login from "./Pages/Login";
 import { CircularProgress } from "@material-ui/core";
 import { useMediaQuery } from "react-responsive";
-import "./App.css";
 import "./assets/css/variables.css";
 import NotFound from "./Pages/NotFound";
 
