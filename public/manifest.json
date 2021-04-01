@@ -1,6 +1,9 @@
 {
   "short_name": "Bahi Book",
   "name": "Bahi Book",
+  "lang": "en-US",
+  "description": "Website to keep track of all transactions among your friends.",
+  "categories": ["money", "business"],
   "icons": [
   {
     "src": "icons/manifest-icon-192.png",
@@ -15,8 +18,27 @@
     "purpose": "any maskable"
   }
 ],
+"screenshots" : [
+  {
+    "src": "ss1.png",
+    "sizes": "578x369",
+    "type": "image/png"
+  },
+  {
+    "src": "ss2.png",
+    "sizes": "578x369",
+    "type": "image/png"
+  },
+  {
+    "src": "ss3.png",
+    "sizes": "578x369",
+    "type": "image/png"
+  }
+],
   "start_url": ".",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "prefer_related_applications": false
 }

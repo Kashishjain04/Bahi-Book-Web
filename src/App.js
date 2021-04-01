@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import CustomerPage from "./Pages/CustomerPage";
-import HomePage from "./Pages/HomePage";
 import firebase from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./redux/userSlice";
-import Login from "./Pages/Login";
 import { CircularProgress } from "@material-ui/core";
 import { useMediaQuery } from "react-responsive";
 import "./assets/css/variables.css";
-import NotFound from "./Pages/NotFound";
+const CustomerPage = lazy(() => import("./Pages/CustomerPage"));
+const HomePage = lazy(() => import("./Pages/HomePage"));
+const Login = lazy(() => import("./Pages/Login"));
+const NotFound = lazy(() => import("./Pages/NotFound"));
+const Denied = lazy(() => import("./Pages/Denied"));
+// import CustomerPage from "./Pages/CustomerPage";
+// import HomePage from "./Pages/HomePage";
+// import Login from "./Pages/Login";
+// import NotFound from "./Pages/NotFound";
+// import Denied from "./Pages/Denied";
 
 const auth = firebase.auth;
 
@@ -75,7 +81,17 @@ function App() {
           style={{ position: "absolute", top: "45vh", left: "45vw" }}
         />
       ) : (
-        <BrowserRouter>{user ? appRoute : authRoute}</BrowserRouter>
+        <BrowserRouter>
+          <Suspense
+            fallback={
+              <CircularProgress
+                style={{ position: "absolute", top: "45vh", left: "45vw" }}
+              />
+            }
+          >
+            {user ? appRoute : authRoute}
+          </Suspense>
+        </BrowserRouter>
       )}
     </div>
   );

@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { selectUser } from "../redux/userSlice";
+import { IconButton, Modal } from "@material-ui/core";
+import { HomeOutlined } from "@ant-design/icons";
+import firebase from "../firebase";
+
+import AddCard from "../Components/AddCard";
 import AddTransaction from "../Components/AddTransaction";
 import DisplayTransaction from "../Components/DisplayTransaction";
-import firebase from "../firebase";
-import { selectUser } from "../redux/userSlice";
-import HomeStats from "../Components/HomeStats";
-import { IconButton, Modal } from "@material-ui/core";
-import AddCard from "../Components/AddCard";
 import TransactionLoadingCard from "../Components/TransactionLoadingCard";
-import { HomeOutlined } from "@ant-design/icons";
-import "../assets/css/CustomerPage.css";
+import HomeStats from "../Components/HomeStats";
 import NotFound from "./NotFound";
+
+import "../assets/css/CustomerPage.css";
 
 const db = firebase.firestore;
 
