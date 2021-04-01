@@ -21,17 +21,17 @@
 "screenshots" : [
   {
     "src": "ss1.png",
-    "sizes": "578x369",
+    "sizes": "576x369",
     "type": "image/png"
   },
   {
     "src": "ss2.png",
-    "sizes": "578x369",
+    "sizes": "576x369",
     "type": "image/png"
   },
   {
     "src": "ss3.png",
-    "sizes": "578x369",
+    "sizes": "576x369",
     "type": "image/png"
   }
 ],
