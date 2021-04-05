@@ -3,6 +3,7 @@
   "name": "Bahi Book",
   "lang": "en-US",
   "description": "Website to keep track of all transactions among your friends.",
+  "categories": ["money"],
   "icons": [
   {
     "src": "icons/manifest-icon-192.png",
