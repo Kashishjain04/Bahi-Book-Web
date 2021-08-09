@@ -45,23 +45,24 @@ function AddCustomer({ hideModal }) {
       hideModal();
       setID("");
       setName("");
+      const lastActivity = db.FieldValue.serverTimestamp();
       db()
         .collection("users")
         .doc(user.email)
         .collection("customers")
         .doc(ID)
-        .set({ name, balance: 0 });
+        .set({ name, balance: 0, lastActivity });
 
       // // //ALL THIS IS NOW DONE USING CLOUD FUNCTIONS // // // // //
       //                                                             //
-      // db().collection("users").doc(ID).set({}, { merge: true });  //
-      // db()                                                        //
-      //   .collection("users")                                      //
-      //   .doc(ID)                                                  //
-      //   .collection("customers")                                  //
-      //   .doc(user.email)                                          //
-      //   .set({ name: user.name, balance: 0 })                     //
-      //   .catch((err) => console.log(err.message));                //
+      db().collection("users").doc(ID).set({}, { merge: true });
+      db()
+        .collection("users")
+        .doc(ID)
+        .collection("customers")
+        .doc(user.email)
+        .set({ name: user.name, balance: 0, lastActivity })
+        .catch((err) => console.log(err.message));
       //                                                             //
       // // // // // // // // // // // // // // // // // // // // // //
     }

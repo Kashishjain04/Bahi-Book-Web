@@ -55,8 +55,7 @@ exports.addTransaction = functions.firestore
       notification: {
         title: "Transaction Added",
         body: `Your transaction with ${customerName} was added.`,
-        icon:
-          "https://firebasestorage.googleapis.com/v0/b/bahi-book.appspot.com/o/icon.png?alt=media&token=13344b24-3410-4047-957a-e6447432c4e7",
+        icon: "https://firebasestorage.googleapis.com/v0/b/bahi-book.appspot.com/o/icon.png?alt=media&token=13344b24-3410-4047-957a-e6447432c4e7",
       },
     };
     const fcmTokens = await db
@@ -120,7 +119,11 @@ exports.addCustomer = functions.firestore
           db.doc(
             `users/${context.params.custID}/customers/${context.params.userID}`
           )
-            .set({ name: userName, balance: 0 })
+            .set({
+              name: userName,
+              balance: 0,
+              lastActivity: change.data().lastActivity,
+            })
             .catch((err) => console.log(err.message));
         }
       });
@@ -129,8 +132,7 @@ exports.addCustomer = functions.firestore
       notification: {
         title: "Customer Added",
         body: `${customerName} was added as your customer.`,
-        icon:
-          "https://firebasestorage.googleapis.com/v0/b/bahi-book.appspot.com/o/icon.png?alt=media&token=13344b24-3410-4047-957a-e6447432c4e7",
+        icon: "https://firebasestorage.googleapis.com/v0/b/bahi-book.appspot.com/o/icon.png?alt=media&token=13344b24-3410-4047-957a-e6447432c4e7",
       },
     };
     const fcmTokens = await db
