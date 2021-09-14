@@ -31,6 +31,11 @@ function App() {
     }
   );
 
+  // Mock login
+  // useEffect(() => {
+  //   auth().signInWithEmailAndPassword("test@user.com", "123456");
+  // }, []);
+
   const dispatch = useDispatch(),
     user = useSelector(selectUser),
     [loading, setLoading] = useState(user ? false : true),

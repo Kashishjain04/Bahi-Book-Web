@@ -4,14 +4,29 @@ import ShowMoreText from "react-show-more-text";
 import { ReceiptOutlined } from "@material-ui/icons";
 import "../assets/css/TransactionCard.css";
 
-function DisplayTransaction({ details }) {
-  const validateImageUrl = (url) =>
-    url.split("?")[0].match(/\.(jpeg|jpg|gif|png)$/) != null;
+function DisplayTransaction({ details, userName }) {
+  const validateImageUrl = (url) => url.includes("bahi-book.appspot.com");
+
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    return (
+      date.getDate() +
+      "/" +
+      (date.getMonth() + 1) +
+      ", " +
+      date.getHours() +
+      ":" +
+      date.getMinutes()
+    );
+  };
 
   return (
     <div className="trans__card">
       <p className="trans__time">
-        {new Date(details.timestamp?.toDate()).toLocaleString()}
+        {formatDate(details?.timestamp?._seconds * 1000)}
+      </p>
+      <p className="trans__by">
+        By: {details?.by === userName ? "You" : details?.by}
       </p>
       <div className="trans__details">
         <Statistic

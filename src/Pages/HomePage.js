@@ -10,10 +10,9 @@ import { LogoutOutlined } from "@ant-design/icons";
 import "../assets/css/Home.css";
 import HomeStats from "../Components/HomeStats";
 import CustomerLoadingCard from "../Components/CustomerLoadingCard";
+import Pusher from "pusher-js";
 
-const db = firebase.firestore,
-  auth = firebase.auth,
-  messaging = firebase.messaging;
+const auth = firebase.auth;
 
 function HomePage() {
   const _isMounted = useRef(true),
@@ -25,48 +24,87 @@ function HomePage() {
     [custLoading, setCustLoading] = useState(true);
 
   useEffect(() => {
-    Notification.requestPermission().catch((err) => console.log(err.code));
-    messaging()
-      .getToken()
-      .then((token) => {
-        db()
-          .collection("users")
-          .doc(user.email)
-          .update({
-            fcmTokens: firebase.firestore.FieldValue.arrayUnion(token),
-          });
-      })
-      .catch((err) => {
-        console.log(err.code);
-      });
-    db()
-      .collection("users")
-      .doc(user.email)
-      .onSnapshot((snap) => {
-        setSent(snap.data()?.sent);
-        setReceived(snap.data()?.received);
-      });
-    db()
-      .collection("users")
-      .doc(user.email)
-      .collection("customers")
-      .onSnapshot((snap) => {
-        const cst = [];
-        snap.forEach((doc) => {
-          cst.push({
-            id: doc.id,
-            name: doc.data().name,
-            balance: doc.data().balance,
-          });
-        });
-        setCustomers(cst);
-        setCustLoading(false);
-      });
+    const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
+      cluster: "ap2",
+    });
+
+    const userDocChannel = pusher.subscribe("userDoc"),
+      customersColChannel = pusher.subscribe("customersCol");
+
+    userDocChannel.bind("update", ({ data }) => {
+      setSent(data?.sent);
+      setReceived(data?.received);
+    });
+    customersColChannel.bind("update", ({ data }) => {
+      setCustomers(data);
+      setCustLoading(false);
+    });
+
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/userDoc`, {
+      body: JSON.stringify({ user: user }),
+      method: "POST",
+      crossDomain: true,
+      headers: { "Content-Type": "application/json" },
+    }).catch((err) => console.log(err));
+
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/customersCol`, {
+      body: JSON.stringify({ user: user }),
+      method: "POST",
+      crossDomain: true,
+      headers: { "Content-Type": "application/json" },
+    }).catch((err) => console.log(err));
+
     return () => {
       _isMounted.current = false;
       setCustomers([]);
       setCustLoading(true);
+      userDocChannel.unbind_all();
+      userDocChannel.unsubscribe();
+      customersColChannel.unbind_all();
+      customersColChannel.unsubscribe();
     };
+  }, [user]);
+
+  useEffect(() => {
+    // Notification.requestPermission().catch((err) => console.log(err.code));
+    // messaging()
+    //   .getToken()
+    //   .then((token) => {
+    //     db()
+    //       .collection("users")
+    //       .doc(user.email)
+    //       .update({
+    //         fcmTokens: firebase.firestore.FieldValue.arrayUnion(token),
+    //       });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.code);
+    //   });
+    // // // // THIS IS HANDLED BY NODEJS BACKEND // // // // //
+    // db()
+    //   .collection("users")
+    //   .doc(user.email)
+    //   .onSnapshot((snap) => {
+    //     setSent(snap.data()?.sent);
+    //     setReceived(snap.data()?.received);
+    //   });
+    // db()
+    //   .collection("users")
+    //   .doc(user.email)
+    //   .collection("customers")
+    //   .onSnapshot((snap) => {
+    //     const cst = [];
+    //     snap.forEach((doc) => {
+    //       cst.push({
+    //         id: doc.id,
+    //         name: doc.data().name,
+    //         balance: doc.data().balance,
+    //       });
+    //     });
+    //     setCustomers(cst);
+    //     setCustLoading(false);
+    //   });
+    // // // // // // // // // // // // // // // // // // // // //
   }, [user]);
 
   const logout = () => {
