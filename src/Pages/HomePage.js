@@ -129,70 +129,7 @@ function HomePage() {
           <>
             {customers.map((cust) => (
               <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
-            {customers.map((cust) => (
-              <DisplayCustomer key={cust.id} details={cust} />
-            ))}
+            ))}            
             <AddCustomerCard onClick={() => setModalVisible(true)} />
           </>
         ) : (
