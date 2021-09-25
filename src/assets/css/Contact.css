@@ -1,0 +1,80 @@
+.contactPage * {
+    box-sizing: border-box;
+}
+.contactPage {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  background-color: var(--container-bg);
+}
+.contactPage__wrapper {
+  min-width: 250px;
+  width: 30%;
+  
+}
+.contactPage__wrapper h1 {
+  text-align: center;
+  font-family: "Langar", cursive;
+  font-size: 2.5rem;
+}
+.contactPage__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contactPage__form > input,
+.contactPage__form > textarea {
+  margin: 10px;
+  margin-left: 0;  
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--dark);
+}
+.contactPage__form > textarea {
+  resize: vertical;
+}
+
+.contactPage__form label {
+  margin-top: 10px;
+}
+
+.contactPage__form > button {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: var(--dark);
+  transition: .2s ease-in-out;
+  border: 1px solid var(--dark);
+}
+
+.contactPage__form > button:hover {
+  background: var(--dark);
+  color: var(--light);
+  border: 1px solid var(--dark);
+}
+
+.contactPage__modal {
+  text-align: center;
+}
+
+.contactPage__modal > h2{
+    font-size: calc(4vw + 40px);
+    text-align: center;
+}
+
+.contactPage__modal > button {
+    width: fit-content;
+    padding: 10px;
+    margin: auto;
+    cursor: pointer;
+    border-radius: 5px !important;
+    border: none;
+}

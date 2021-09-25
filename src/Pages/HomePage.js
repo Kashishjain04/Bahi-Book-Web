@@ -11,7 +11,7 @@ import "../assets/css/Home.css";
 import HomeStats from "../Components/HomeStats";
 import CustomerLoadingCard from "../Components/CustomerLoadingCard";
 import Pusher from "pusher-js";
-
+import { Link } from 'react-router-dom';
 const auth = firebase.auth;
 
 function HomePage() {
@@ -130,6 +130,69 @@ function HomePage() {
             {customers.map((cust) => (
               <DisplayCustomer key={cust.id} details={cust} />
             ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
+            {customers.map((cust) => (
+              <DisplayCustomer key={cust.id} details={cust} />
+            ))}
             <AddCustomerCard onClick={() => setModalVisible(true)} />
           </>
         ) : (
@@ -144,6 +207,9 @@ function HomePage() {
       >
         <AddCustomer hideModal={() => setModalVisible(false)} />
       </Modal>
+      <div className="contactus-link">
+        <Link to="/contact-us">Contact Us</Link>
+      </div>
     </div>
   );
 }

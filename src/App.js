@@ -6,6 +6,7 @@ import { login, logout, selectUser } from "./redux/userSlice";
 import { CircularProgress } from "@material-ui/core";
 import { useMediaQuery } from "react-responsive";
 import "./assets/css/variables.css";
+const ContactPage = lazy(() => import("./Pages/ContactPage"));
 const CustomerPage = lazy(() => import("./Pages/CustomerPage"));
 const HomePage = lazy(() => import("./Pages/HomePage"));
 const Login = lazy(() => import("./Pages/Login"));
@@ -68,6 +69,7 @@ function App() {
     <Switch>
       <Route path="/" exact component={Login} />
       <Route path="/customer/:custID" exact component={Denied} />
+      <Route path="/contact-us" exact component={ContactPage} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
@@ -75,6 +77,7 @@ function App() {
     <Switch>
       <Route path="/" exact component={HomePage} />
       <Route path="/customer/:custID" exact component={CustomerPage} />
+      <Route path="/contact-us" exact component={ContactPage} />
       <Route path="*" component={NotFound} />
     </Switch>
   );

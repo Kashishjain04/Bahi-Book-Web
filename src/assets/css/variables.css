@@ -10,6 +10,9 @@ html.light {
   --card-bg: #ffffff;
   --container-bg: #ececec;
   --shadow-color: #ababab;
+  --light: #fff;
+  --dark: #000;
+
 }
 html.dark {
   background-color: #34353f;
@@ -23,4 +26,6 @@ html.dark {
   --card-bg: #34353f;
   --container-bg: #26262c;
   --shadow-color: #131313;
+  --light: #000;
+  --dark: #fff;
 }
