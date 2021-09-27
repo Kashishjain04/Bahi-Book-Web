@@ -11,9 +11,10 @@ import DisplayTransaction from "../Components/DisplayTransaction";
 import TransactionLoadingCard from "../Components/TransactionLoadingCard";
 import HomeStats from "../Components/HomeStats";
 import NotFound from "./NotFound";
-import Pusher from "pusher-js";
+// import Pusher from "pusher-js";
 
 import "../assets/css/CustomerPage.css";
+import { io } from "socket.io-client";
 
 function CustomerPage() {
   const { custID } = useParams(),
@@ -27,51 +28,84 @@ function CustomerPage() {
     [exists, setExist] = useState(true);
 
   useEffect(() => {
-    const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
-      cluster: "ap2",
-    });
+    const socket = io(process.env.REACT_APP_API_BASE_URL);
 
-    const custDocChannel = pusher.subscribe("custDoc"),
-      transactionsColChannel = pusher.subscribe("transactionsCol");
+    socket.emit("custDoc", {user, custId: custID}, (err) => console.log(err));
+    socket.emit("transactionsCol", {user, custId: custID}, (err) => console.log(err));
 
-    custDocChannel.bind("update", ({ data }) => {
+    socket.on("custDoc", ({data}) => {
       if (data) {
         setName(data?.name);
       } else {
         setExist(false);
       }
-    });
-    transactionsColChannel.bind("update", ({ data }) => {
+    })
+    
+    socket.on("transactionsCol", ({data}) => {
       setTransLoading(false);
       setTrans(data?.transactions || []);
       setReceived(data?.received || 0);
       setSent(data?.sent || 0);
       setTransLoading(false);
-    });
-
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/custDoc`, {
-      body: JSON.stringify({ user, custId: custID }),
-      method: "POST",
-      crossDomain: true,
-      headers: { "Content-Type": "application/json" },
-    }).catch((err) => console.log(err));
-
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/transactionsCol`, {
-      body: JSON.stringify({ user, custId: custID }),
-      method: "POST",
-      crossDomain: true,
-      headers: { "Content-Type": "application/json" },
-    }).catch((err) => console.log(err));
-
+    })
+    
     return () => {
       setTrans([]);
       setTransLoading(true);
-      custDocChannel.unbind_all();
-      custDocChannel.unsubscribe();
-      transactionsColChannel.unbind_all();
-      transactionsColChannel.unsubscribe();
+      socket.off();      
     };
+
   }, [user, custID]);
+
+  // // // // // // OLD PUSHER CODE NOW USING SOCKET.IO // // // // // //
+  // useEffect(() => {
+    // const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
+    //   cluster: "ap2",
+    // });
+
+    // const custDocChannel = pusher.subscribe("custDoc"),
+    //   transactionsColChannel = pusher.subscribe("transactionsCol");
+
+    // custDocChannel.bind("update", ({ data }) => {
+    //   if (data) {
+    //     setName(data?.name);
+    //   } else {
+    //     setExist(false);
+    //   }
+    // });
+    // transactionsColChannel.bind("update", ({ data }) => {
+    //   setTransLoading(false);
+    //   setTrans(data?.transactions || []);
+    //   setReceived(data?.received || 0);
+    //   setSent(data?.sent || 0);
+    //   setTransLoading(false);
+    // });
+
+    // fetch(`${process.env.REACT_APP_API_BASE_URL}/api/custDoc`, {
+    //   body: JSON.stringify({ user, custId: custID }),
+    //   method: "POST",
+    //   crossDomain: true,
+    //   headers: { "Content-Type": "application/json" },
+    // }).catch((err) => console.log(err));
+
+    // fetch(`${process.env.REACT_APP_API_BASE_URL}/api/transactionsCol`, {
+    //   body: JSON.stringify({ user, custId: custID }),
+    //   method: "POST",
+    //   crossDomain: true,
+    //   headers: { "Content-Type": "application/json" },
+    // }).catch((err) => console.log(err));
+
+    // return () => {
+    //   setTrans([]);
+    //   setTransLoading(true);
+    //   custDocChannel.unbind_all();
+    //   custDocChannel.unsubscribe();
+    //   transactionsColChannel.unbind_all();
+    //   transactionsColChannel.unsubscribe();
+    // };
+  // }, [user, custID]);
+  // // // // // // // // // // // // // // /// // // // // // // // //
+
 
   // // // // // // DONE USING NODEJS // // // // // //
   // useEffect(() => {

@@ -10,8 +10,10 @@ import { LogoutOutlined } from "@ant-design/icons";
 import "../assets/css/Home.css";
 import HomeStats from "../Components/HomeStats";
 import CustomerLoadingCard from "../Components/CustomerLoadingCard";
-import Pusher from "pusher-js";
-import { Link } from 'react-router-dom';
+// import Pusher from "pusher-js";
+import { Link } from "react-router-dom";
+import { io } from "socket.io-client";
+
 const auth = firebase.auth;
 
 function HomePage() {
@@ -24,48 +26,77 @@ function HomePage() {
     [custLoading, setCustLoading] = useState(true);
 
   useEffect(() => {
-    const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
-      cluster: "ap2",
+    const socket = io(process.env.REACT_APP_API_BASE_URL);
+
+    socket.emit("userDoc", { user }, (err) => {
+      console.log(err);
+    });
+    socket.emit("customersCol", { user }, (err) => {
+      console.log(err);
     });
 
-    const userDocChannel = pusher.subscribe("userDoc"),
-      customersColChannel = pusher.subscribe("customersCol");
-
-    userDocChannel.bind("update", ({ data }) => {
+    socket.on("userDoc", ({ data }) => {
       setSent(data?.sent);
       setReceived(data?.received);
     });
-    customersColChannel.bind("update", ({ data }) => {
+    socket.on("customersCol", ({ data }) => {
       setCustomers(data);
       setCustLoading(false);
     });
-
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/userDoc`, {
-      body: JSON.stringify({ user: user }),
-      method: "POST",
-      crossDomain: true,
-      headers: { "Content-Type": "application/json" },
-    }).catch((err) => console.log(err));
-
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/customersCol`, {
-      body: JSON.stringify({ user: user }),
-      method: "POST",
-      crossDomain: true,
-      headers: { "Content-Type": "application/json" },
-    }).catch((err) => console.log(err));
 
     return () => {
       _isMounted.current = false;
       setCustomers([]);
       setCustLoading(true);
-      userDocChannel.unbind_all();
-      userDocChannel.unsubscribe();
-      customersColChannel.unbind_all();
-      customersColChannel.unsubscribe();
+      socket.off();
     };
   }, [user]);
 
-  useEffect(() => {
+  // // // // // // OLD PUSHER CODE NOW USING SOCKET.IO // // // // // //
+  // useEffect(() => {
+  // const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
+  //   cluster: "ap2",
+  // });
+
+  // const userDocChannel = pusher.subscribe("userDoc"),
+  //   customersColChannel = pusher.subscribe("customersCol");
+
+  // userDocChannel.bind("update", ({ data }) => {
+  //   setSent(data?.sent);
+  //   setReceived(data?.received);
+  // });
+  // customersColChannel.bind("update", ({ data }) => {
+  //   setCustomers(data);
+  //   setCustLoading(false);
+  // });
+
+  // fetch(`${process.env.REACT_APP_API_BASE_URL}/api/userDoc`, {
+  //   body: JSON.stringify({ user: user }),
+  //   method: "POST",
+  //   crossDomain: true,
+  //   headers: { "Content-Type": "application/json" },
+  // }).catch((err) => console.log(err));
+
+  // fetch(`${process.env.REACT_APP_API_BASE_URL}/api/customersCol`, {
+  //   body: JSON.stringify({ user: user }),
+  //   method: "POST",
+  //   crossDomain: true,
+  //   headers: { "Content-Type": "application/json" },
+  // }).catch((err) => console.log(err));
+
+  // return () => {
+  //   _isMounted.current = false;
+  //   setCustomers([]);
+  //   setCustLoading(true);
+  //   userDocChannel.unbind_all();
+  //   userDocChannel.unsubscribe();
+  //   customersColChannel.unbind_all();
+  //   customersColChannel.unsubscribe();
+  // };
+  // }, [user]);
+  // // // // // // // // // // // // // // /// // // // // // // // //
+
+  // useEffect(() => {
     // Notification.requestPermission().catch((err) => console.log(err.code));
     // messaging()
     //   .getToken()
@@ -104,8 +135,8 @@ function HomePage() {
     //     setCustomers(cst);
     //     setCustLoading(false);
     //   });
-    // // // // // // // // // // // // // // // // // // // // //
-  }, [user]);
+  // }, [user]);
+  // // // // // // // // // // // // // // // // // // // // // //
 
   const logout = () => {
     auth()
@@ -129,7 +160,7 @@ function HomePage() {
           <>
             {customers.map((cust) => (
               <DisplayCustomer key={cust.id} details={cust} />
-            ))}            
+            ))}
             <AddCustomerCard onClick={() => setModalVisible(true)} />
           </>
         ) : (
