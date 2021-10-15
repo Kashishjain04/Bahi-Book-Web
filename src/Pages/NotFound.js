@@ -1,6 +1,5 @@
-import { IconButton } from "@material-ui/core";
-import { HomeOutlined } from "@ant-design/icons";
-import React from "react";
+import IconButton from "@material-ui/core/IconButton";
+import HomeOutlined from "@ant-design/icons/HomeOutlined";
 import { Link } from "react-router-dom";
 import "../assets/css/NotFound.css";
 

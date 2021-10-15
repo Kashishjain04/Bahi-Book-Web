@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import "../assets/css/AddCustomer.css";
-import { Button } from "@material-ui/core";
+import  Button from "@material-ui/core/Button";
 
 function AddCustomer({ hideModal }) {
   const user = useSelector(selectUser),

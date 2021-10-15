@@ -9,6 +9,21 @@
   transition: all 0.25s;
 }
 
+.customer__card .customer__time {
+  text-align: end;
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--timestamp-text);
+}
+
+.customer__card .customer__name {
+  margin-top: -5px;
+  margin-bottom: 5px;
+  font-weight: lighter;
+  font-family: "Langar", cursive;
+  word-break: break-word;  
+}
+
 .customer__card:hover {
   box-shadow: 3px 3px 20px var(--shadow-color);
 }
@@ -24,13 +39,6 @@
 
 .customer__card .negative {
   color: var(--negative);
-}
-
-.customer__card > h2 {
-  font-weight: lighter;
-  font-family: "Langar", cursive;
-  word-break: break-word;
-  margin-bottom: 0;
 }
 
 .customer__card.add {

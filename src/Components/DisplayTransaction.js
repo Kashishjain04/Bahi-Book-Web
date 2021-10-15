@@ -1,29 +1,16 @@
-import { Statistic } from "antd";
-import React from "react";
 import ShowMoreText from "react-show-more-text";
-import { ReceiptOutlined } from "@material-ui/icons";
+import ReceiptOutlined from "@material-ui/icons/ReceiptOutlined";
+import { Statistic } from "antd";
 import "../assets/css/TransactionCard.css";
+import moment from "moment";
 
 function DisplayTransaction({ details, userName }) {
   const validateImageUrl = (url) => url.includes("bahi-book.appspot.com");
 
-  const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
-    return (
-      date.getDate() +
-      "/" +
-      (date.getMonth() + 1) +
-      ", " +
-      date.getHours() +
-      ":" +
-      date.getMinutes()
-    );
-  };
-
   return (
     <div className="trans__card">
       <p className="trans__time">
-        {formatDate(details?.timestamp?._seconds * 1000)}
+        {moment(details?.timestamp?._seconds * 1000).format('DD/MM/YY, HH:mm')}
       </p>
       <p className="trans__by">
         By: {details?.by === userName ? "You" : details?.by}

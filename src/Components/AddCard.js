@@ -1,5 +1,5 @@
 import React from "react";
-import { PlusOutlined } from "@ant-design/icons";
+import PlusOutlined from "@ant-design/icons/PlusOutlined";
 import "../assets/css/CustomerCard.css";
 
 function AddCard({ onClick }) {

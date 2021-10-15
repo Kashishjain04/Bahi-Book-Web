@@ -1,11 +1,12 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import firebase from "./firebase";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./redux/userSlice";
-import { CircularProgress } from "@material-ui/core";
 import { useMediaQuery } from "react-responsive";
 import "./assets/css/variables.css";
+import firebase from "./firebase";
+
 const ContactPage = lazy(() => import("./Pages/ContactPage"));
 const CustomerPage = lazy(() => import("./Pages/CustomerPage"));
 const HomePage = lazy(() => import("./Pages/HomePage"));
@@ -34,7 +35,7 @@ function App() {
 
   // Mock login
   // useEffect(() => {
-  //   auth().signInWithEmailAndPassword("test@user.com", "123456");
+    // auth().signInWithEmailAndPassword("test@user.com", "123456");
   // }, []);
 
   const dispatch = useDispatch(),

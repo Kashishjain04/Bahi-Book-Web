@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../assets/css/Contact.css";
-import { Modal } from "@material-ui/core";
+import Modal from "@material-ui/core/Modal";
 import { useHistory } from "react-router";
+import "../assets/css/Contact.css";
 
 const ContactPage = () => {
   const history = useHistory(),

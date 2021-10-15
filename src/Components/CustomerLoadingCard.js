@@ -1,6 +1,5 @@
-import { Typography } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
-import React from "react";
+import Typography from "@material-ui/core/Typography";
+import Skeleton from "@material-ui/lab/Skeleton";
 import "../assets/css/CustomerCard.css";
 
 function CustomerLoadingCard() {
