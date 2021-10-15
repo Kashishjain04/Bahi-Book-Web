@@ -55,7 +55,7 @@
 }
 
 @media only screen and (max-width: 520px) {
-  .customer__card > h2 {
+  .customer__card .customer__name {
     font-size: 1.3rem;
   }
 }

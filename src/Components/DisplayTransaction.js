@@ -1,14 +1,49 @@
+import { useState, useEffect } from "react";
 import ShowMoreText from "react-show-more-text";
 import ReceiptOutlined from "@material-ui/icons/ReceiptOutlined";
 import { Statistic } from "antd";
 import "../assets/css/TransactionCard.css";
 import moment from "moment";
+import DeleteOutlined from "@ant-design/icons/DeleteOutlined"
+import IconButton from "@material-ui/core/IconButton";
+import { useSelector } from "react-redux";
+import { selectUser } from "../redux/userSlice";
+import Loader from "./Loader";
 
-function DisplayTransaction({ details, userName }) {
+function DisplayTransaction({ details, userName, custId }) {
+  const user = useSelector(selectUser),
+  [loading, setLoading] = useState(false),
+  [mount, setMount] = useState(false);
+  
   const validateImageUrl = (url) => url.includes("bahi-book.appspot.com");
+
+  useEffect(() => {
+    setMount(true);
+    return () => {
+      setMount(false);
+    };
+  }, []);
+
+  const deleteTransaction = () => {
+    mount && setLoading(true);
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/deleteTransaction`, {
+      method: "POST",
+      body: JSON.stringify({
+        user,
+        custId,
+        transId: details.id
+      }),
+      crossDomain: true,
+      headers: { "Content-Type": "application/json" },
+    }).then(() => mount && setLoading(false)).catch((err) => {
+      mount && setLoading(false);
+      console.log(err)
+    });
+  }
 
   return (
     <div className="trans__card">
+      {loading && <Loader />}
       <p className="trans__time">
         {moment(details?.timestamp?._seconds * 1000).format('DD/MM/YY, HH:mm')}
       </p>
@@ -44,6 +79,9 @@ function DisplayTransaction({ details, userName }) {
           </ShowMoreText>
         )}
       </div>
+      <IconButton onClick={deleteTransaction} className="trans__delete">
+        <DeleteOutlined fontSize="small" />
+      </IconButton>
     </div>
   );
 }

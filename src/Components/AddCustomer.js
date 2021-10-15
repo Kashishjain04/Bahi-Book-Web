@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import "../assets/css/AddCustomer.css";
 import  Button from "@material-ui/core/Button";
 
-function AddCustomer({ hideModal }) {
+const AddCustomer = forwardRef(({ hideModal }, ref) => {
   const user = useSelector(selectUser),
     [ID, setID] = useState(""),
     [name, setName] = useState("");
@@ -58,11 +58,11 @@ function AddCustomer({ hideModal }) {
   );
 
   return (
-    <div className="add__customer">
+    <div ref={ref} className="add__customer">
       <h2>Add Customer</h2>
       {form}
     </div>
   );
-}
+})
 
 export default AddCustomer;

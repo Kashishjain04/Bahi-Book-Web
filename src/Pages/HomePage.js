@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
 import Modal from "@material-ui/core/Modal";
-import LogoutOutlined from "@ant-design/icons/LogoutOutlined";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import { io } from "socket.io-client";
@@ -15,10 +13,7 @@ import AddCustomerCard from "../Components/AddCard";
 import HomeStats from "../Components/HomeStats";
 import CustomerLoadingCard from "../Components/CustomerLoadingCard";
 import ForegroundNotification from "../Components/ForegroundNotification";
-import firebase from "../firebase";
 import "../assets/css/Home.css";
-
-const auth = firebase.auth;
 
 function HomePage() {
 	const _isMounted = useRef(true),
@@ -116,23 +111,14 @@ function HomePage() {
 			})
 			.catch((err) => console.log(err));
 	}, [user]);
-	// // // // // // // // // // // // // // // // // // // // //
-
-	const logout = () => {
-		auth()
-			.signOut()
-			.catch((err) => console.log(err.message));
-	};
+	// // // // // // // // // // // // // // // // // // // // //	
 
 	return (
 		<div className="home">
 			<ForegroundNotification />
 			<div className="head">
 				<Avatar className="avatar" alt={user.name} src={user.image} />
-				<h2 className="head__text">{user.name}</h2>
-				<IconButton className="logout" onClick={logout}>
-					<LogoutOutlined />
-				</IconButton>
+				<h2 className="head__text">{user.name}</h2>				
 			</div>
 			<HomeStats sent={sent} received={received} />
 			<h1 className="subheading">Customers</h1>

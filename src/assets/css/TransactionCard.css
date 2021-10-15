@@ -1,4 +1,5 @@
 .trans__card {
+  position: relative;
   color: var(--card-text);
   padding: 10px;
   margin: 10px 5px;
@@ -52,6 +53,17 @@
 
 .trans__desc a {
   color: #0000ff;
+}
+
+.trans__delete {
+  color: var(--card-text);
+  position: absolute;
+  bottom: 0;
+  right: 0;  
+}
+
+.trans__delete .anticon{
+  font-size: 1rem;
 }
 
 @media only screen and (max-width: 520px) {

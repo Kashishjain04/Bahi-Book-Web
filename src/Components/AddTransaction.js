@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectUser } from "../redux/userSlice";
@@ -6,7 +6,7 @@ import "../assets/css/AddCustomer.css";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
-function AddTransaction({ hideModal }) {
+const AddTransaction = forwardRef(({ hideModal }, ref) => {
   const { custID } = useParams(),
     user = useSelector(selectUser),
     [amount, setAmount] = useState(0),
@@ -97,11 +97,11 @@ function AddTransaction({ hideModal }) {
   );
 
   return (
-    <div className="add__customer">
+    <div ref={ref} className="add__customer">
       <h2>Add Transaction</h2>
       {form}
     </div>
   );
-}
+})
 
 export default AddTransaction;

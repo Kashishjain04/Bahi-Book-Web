@@ -9,7 +9,6 @@ export const getFcmToken = async () => {
 			vapidKey:
 				'BB8AXcA2_kgmm-5XNEVYGvvVOgIy6fKZ12pA6sJMj43IyG3KZKYiutgJoEtBsTXwL5aeZeiRTqk9CZUwcmaJXOw',
 		});
-        console.log(token);
 		return { message: 'success', token };
 	} catch (err) {
 		return { error: err.message || 'Invalid error', token: null };

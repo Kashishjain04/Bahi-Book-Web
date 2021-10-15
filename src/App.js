@@ -4,9 +4,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./redux/userSlice";
 import { useMediaQuery } from "react-responsive";
-import "./assets/css/variables.css";
 import firebase from "./firebase";
+import "./assets/css/variables.css";
 
+const Navbar = lazy(() => import("./Components/Navbar"));
 const ContactPage = lazy(() => import("./Pages/ContactPage"));
 const CustomerPage = lazy(() => import("./Pages/CustomerPage"));
 const HomePage = lazy(() => import("./Pages/HomePage"));
@@ -22,88 +23,91 @@ const Denied = lazy(() => import("./Pages/Denied"));
 const auth = firebase.auth;
 
 function App() {
-  // Check System Theme
-  const systemPrefersDark = useMediaQuery(
-    {
-      query: "(prefers-color-scheme: dark)",
-    },
-    undefined,
-    (prefersDark) => {
-      setIsDark(prefersDark);
-    }
-  );
+	// Check System Theme
+	const systemPrefersDark = useMediaQuery(
+		{
+			query: "(prefers-color-scheme: dark)",
+		},
+		undefined,
+		(prefersDark) => {
+			setIsDark(prefersDark);
+		}
+	);
 
-  // Mock login
-  // useEffect(() => {
-    // auth().signInWithEmailAndPassword("test@user.com", "123456");
-  // }, []);
+	// Mock login
+	// useEffect(() => {
+	// auth().signInWithEmailAndPassword("test@user.com", "123456");
+	// }, []);
 
-  const dispatch = useDispatch(),
-    user = useSelector(selectUser),
-    [loading, setLoading] = useState(user ? false : true),
-    [isDark, setIsDark] = useState(systemPrefersDark);
+	const dispatch = useDispatch(),
+		user = useSelector(selectUser),
+		[loading, setLoading] = useState(user ? false : true),
+		[isDark, setIsDark] = useState(systemPrefersDark);
 
-  // For Theme
-  useEffect(() => {
-    document.documentElement.classList.add(isDark ? "dark" : "light");
-    document.documentElement.classList.remove(isDark ? "light" : "dark");
-  }, [isDark]);
+	// For Theme
+	useEffect(() => {
+		document.documentElement.classList.add(isDark ? "dark" : "light");
+		document.documentElement.classList.remove(isDark ? "light" : "dark");
+	}, [isDark]);
 
-  useEffect(() => {
-    auth().onAuthStateChanged((user) => {
-      if (user) {
-        const obj = {
-          name: user.displayName,
-          email: user.email,
-          image: user.photoURL,
-        };
-        dispatch(login(obj));
-        setLoading(false);
-      } else {
-        dispatch(logout());
-        setLoading(false);
-      }
-    });
-  }, [dispatch]);
+	useEffect(() => {
+		auth().onAuthStateChanged((user) => {
+			if (user) {
+				const obj = {
+					name: user.displayName,
+					email: user.email,
+					image: user.photoURL,
+				};
+				dispatch(login(obj));
+				setLoading(false);
+			} else {
+				dispatch(logout());
+				setLoading(false);
+			}
+		});
+	}, [dispatch]);
 
-  const authRoute = (
-    <Switch>
-      <Route path="/" exact component={Login} />
-      <Route path="/customer/:custID" exact component={Denied} />
-      <Route path="/contact-us" exact component={ContactPage} />
-      <Route path="*" component={NotFound} />
-    </Switch>
-  );
-  const appRoute = (
-    <Switch>
-      <Route path="/" exact component={HomePage} />
-      <Route path="/customer/:custID" exact component={CustomerPage} />
-      <Route path="/contact-us" exact component={ContactPage} />
-      <Route path="*" component={NotFound} />
-    </Switch>
-  );
+	const authRoute = (
+		<Switch>
+			<Route path="/" exact component={Login} />
+			<Route path="/customer/:custID" exact component={Denied} />
+			<Route path="/contact-us" exact component={ContactPage} />
+			<Route path="*" component={NotFound} />
+		</Switch>
+	);
+	const appRoute = (
+		<>
+			<Navbar />
+			<Switch>
+				<Route path="/" exact component={HomePage} />
+				<Route path="/customer/:custID" exact component={CustomerPage} />
+				<Route path="/contact-us" exact component={ContactPage} />
+				<Route path="*" component={NotFound} />
+			</Switch>
+		</>
+	);
 
-  return (
-    <div>
-      {loading ? (
-        <CircularProgress
-          style={{ position: "absolute", top: "45vh", left: "45vw" }}
-        />
-      ) : (
-        <BrowserRouter>
-          <Suspense
-            fallback={
-              <CircularProgress
-                style={{ position: "absolute", top: "45vh", left: "45vw" }}
-              />
-            }
-          >
-            {user ? appRoute : authRoute}
-          </Suspense>
-        </BrowserRouter>
-      )}
-    </div>
-  );
+	return (
+		<div>
+			{loading ? (
+				<CircularProgress
+					style={{ position: "absolute", top: "45vh", left: "45vw" }}
+				/>
+			) : (
+				<BrowserRouter>
+					<Suspense
+						fallback={
+							<CircularProgress
+								style={{ position: "absolute", top: "45vh", left: "45vw" }}
+							/>
+						}
+					>
+						{user ? appRoute : authRoute}
+					</Suspense>
+				</BrowserRouter>
+			)}
+		</div>
+	);
 }
 
 export default App;
