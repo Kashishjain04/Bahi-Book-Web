@@ -76,15 +76,12 @@ function App() {
 		</Switch>
 	);
 	const appRoute = (
-		<>
-			<Navbar />
-			<Switch>
-				<Route path="/" exact component={HomePage} />
-				<Route path="/customer/:custID" exact component={CustomerPage} />
-				<Route path="/contact-us" exact component={ContactPage} />
-				<Route path="*" component={NotFound} />
-			</Switch>
-		</>
+		<Switch>
+			<Route path="/" exact component={HomePage} />
+			<Route path="/customer/:custID" exact component={CustomerPage} />
+			<Route path="/contact-us" exact component={ContactPage} />
+			<Route path="*" component={NotFound} />
+		</Switch>
 	);
 
 	return (
@@ -102,6 +99,7 @@ function App() {
 							/>
 						}
 					>
+						<Navbar />
 						{user ? appRoute : authRoute}
 					</Suspense>
 				</BrowserRouter>

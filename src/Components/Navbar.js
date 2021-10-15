@@ -38,12 +38,14 @@ const Navbar = () => {
 			<Link to="/" className="navbar__brand">
 				Bahi Book
 			</Link>
-			<div className="navbar__content">
-				<IconButton onClick={() => setOpen(true)}>
-					<Avatar className="avatar" alt={user?.name} src={user?.image} />
-				</IconButton>
-			</div>
-			{open && <DropdownMenu />}
+			{user && (
+				<div className="navbar__content">
+					<IconButton onClick={() => setOpen(true)}>
+						<Avatar className="avatar" alt={user?.name} src={user?.image} />
+					</IconButton>
+				</div>
+			)}
+			{user && open && <DropdownMenu />}
 		</div>
 	);
 };
