@@ -4,7 +4,7 @@ import "../assets/css/CustomerCard.css";
 
 function DisplayCustomer({ details }) {
 	return (
-		<Link className="customer__card" to={"/customer/" + details.id}>
+		<Link className="customer__card" to={"/friend/" + details.id}>
 			<p className="customer__time">
 				{moment(details?.lastActivity?._seconds * 1000).fromNow()}
 			</p>

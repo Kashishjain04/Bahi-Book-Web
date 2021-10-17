@@ -121,7 +121,7 @@ function HomePage() {
 				<h2 className="head__text">{user.name}</h2>				
 			</div>
 			<HomeStats sent={sent} received={received} />
-			<h1 className="subheading">Customers</h1>
+			<h1 className="subheading">Friends</h1>
 			<div className="customers">
 				{custLoading === false ? (
 					<>

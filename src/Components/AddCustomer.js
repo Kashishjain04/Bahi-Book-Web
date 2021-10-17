@@ -39,7 +39,7 @@ const AddCustomer = forwardRef(({ hideModal }, ref) => {
     <form className="add__form" onSubmit={submitHandler}>
       <input
         type="email"
-        placeholder="Customer ID"
+        placeholder="Email Id"
         value={ID}
         onChange={changeID}
         required
@@ -59,7 +59,7 @@ const AddCustomer = forwardRef(({ hideModal }, ref) => {
 
   return (
     <div ref={ref} className="add__customer">
-      <h2>Add Customer</h2>
+      <h2>Add Friend</h2>
       {form}
     </div>
   );
