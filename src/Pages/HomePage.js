@@ -14,6 +14,7 @@ import HomeStats from "../Components/HomeStats";
 import CustomerLoadingCard from "../Components/CustomerLoadingCard";
 import ForegroundNotification from "../Components/ForegroundNotification";
 import "../assets/css/Home.css";
+import DialogContent from "@material-ui/core/DialogContent";
 
 function HomePage() {
 	const _isMounted = useRef(true),
@@ -111,14 +112,14 @@ function HomePage() {
 			})
 			.catch((err) => console.log(err));
 	}, [user]);
-	// // // // // // // // // // // // // // // // // // // // //	
+	// // // // // // // // // // // // // // // // // // // // //
 
 	return (
 		<div className="home">
 			<ForegroundNotification />
 			<div className="head">
 				<Avatar className="avatar" alt={user.name} src={user.image} />
-				<h2 className="head__text">{user.name}</h2>				
+				<h2 className="head__text">{user.name}</h2>
 			</div>
 			<HomeStats sent={sent} received={received} />
 			<h1 className="subheading">Friends</h1>
@@ -140,7 +141,9 @@ function HomePage() {
 				aria-labelledby="add-customer"
 				aria-describedby="simple-modal-description"
 			>
-				<AddCustomer hideModal={() => setModalVisible(false)} />
+				<DialogContent>
+					<AddCustomer hideModal={() => setModalVisible(false)} />
+				</DialogContent>
 			</Modal>
 			<div className="contactus-link">
 				<Link to="/contact-us">Contact Us</Link>

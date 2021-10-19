@@ -14,6 +14,7 @@ import NotFound from "./NotFound";
 
 import "../assets/css/CustomerPage.css";
 import { io } from "socket.io-client";
+import DialogContent from "@material-ui/core/DialogContent";
 
 function CustomerPage() {
 	const { custID } = useParams(),
@@ -62,7 +63,7 @@ function CustomerPage() {
 	) : (
 		<div>
 			<div className="head">
-				<h1 className="customer__name">{name}</h1>				
+				<h1 className="customer__name">{name}</h1>
 			</div>
 			<HomeStats sent={sent} received={received} />
 			<h1 className="subheading">Transactions</h1>
@@ -89,7 +90,9 @@ function CustomerPage() {
 				aria-labelledby="add-customer"
 				aria-describedby="simple-modal-description"
 			>
-				<AddTransaction hideModal={() => setModalVisible(false)} />
+				<DialogContent>
+					<AddTransaction hideModal={() => setModalVisible(false)} />
+				</DialogContent>
 			</Modal>
 		</div>
 	);
