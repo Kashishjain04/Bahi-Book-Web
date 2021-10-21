@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import { Link } from "react-router-dom";
 import LogoutOutlined from "@ant-design/icons/LogoutOutlined";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
 import firebase from "../firebase";
 import "../assets/css/Navbar.css";
 

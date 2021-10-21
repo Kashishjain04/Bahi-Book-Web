@@ -9,7 +9,9 @@ html.light {
   --timestamp-text: #666666;
   --card-bg: #ffffff;
   --container-bg: #ececec;
+  --secondary-bg: #fafafa;
   --shadow-color: #ababab;
+  --border-color: #9e9e9e;
   --light: #fff;
   --dark: #000;
 
@@ -25,7 +27,9 @@ html.dark {
   --timestamp-text: #666666;
   --card-bg: #34353f;
   --container-bg: #26262c;
+  --secondary-bg: #2f2f35;
   --shadow-color: #131313;
+  --border-color: #5a5a5a;
   --light: #000;
   --dark: #fff;
 }

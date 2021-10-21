@@ -5,7 +5,7 @@
   margin: 10px 5px;
   border-radius: 5px;
   width: 21vw;
-  background-color: var(--card-bg);
+  background-color: var(--container-bg);
   transition: all 0.25s;
 }
 

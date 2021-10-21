@@ -1,0 +1,64 @@
+.transactionsTable{
+    width: 100%;
+}
+
+.transactionsTable * {
+    color: var(--card-text);
+}
+
+.transactionsTable {
+    border-radius: 5px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0px 0px 10px 2px var(--shadow-color);
+}
+
+.transactionsTable__head{
+    background-color: var(--container-bg);
+}
+
+.transactionsTable__head th {
+    font-weight: 600;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.transactionsTable__row.i-0{
+    background-color: var(--secondary-bg);
+}
+.transactionsTable__row.i-1{
+    background-color: var(--container-bg);
+}
+.transactionsTable__row td, .transactionsTable__head th{
+    border: 1px solid var(--border-color);
+    border-top: none;
+}
+.transactionsTable__row td.gave {
+    color: var(--negative);
+}
+.transactionsTable__row td.got {
+    color: var(--positive);
+}
+.transactionsTable__row td:first-of-type{    
+    opacity: 0.7;
+}
+.transactionsTable__row td:first-of-type, .transactionsTable__head th:first-of-type{
+    border-left: none;
+}
+.transactionsTable__row td:last-of-type, .transactionsTable__head th:last-of-type{
+    border-right: none;
+}
+.transactionsTable__row td .deleteBtn *{
+    color: var(--negative);
+}
+.transactionsTable__row td .deleteBtn {
+    font-size: 16px;
+}
+.transactionsTable__row:last-of-type td{
+    border-bottom: none;
+}
+.transactionsTable__footer {
+    border-top: 1px solid var(--border-color);
+    border-bottom: none;
+    background-color: var(--container-bg);
+}

@@ -7,7 +7,7 @@ function HomeStats({ sent, received }) {
 			<div className="number__item">
 				<Statistic
 					prefix={<span>₹ </span>}
-          precision={1}
+					precision={1}
 					title="You Got"
 					value={received}
 					valueStyle={{ color: "#3f8600", textAlign: "center" }}
@@ -16,7 +16,7 @@ function HomeStats({ sent, received }) {
 			<div className="number__item">
 				<Statistic
 					prefix={<span>₹ </span>}
-          precision={1}
+					precision={1}
 					title="You Gave"
 					value={sent}
 					valueStyle={{ color: "#cf1322", textAlign: "center" }}
@@ -25,7 +25,7 @@ function HomeStats({ sent, received }) {
 			<div className="number__item">
 				<Statistic
 					prefix={<span>₹ </span>}
-          precision={1}
+					precision={1}
 					title={
 						received === sent
 							? "Balance"

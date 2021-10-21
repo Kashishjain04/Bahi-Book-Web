@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectUser } from "../redux/userSlice";
 import "../assets/css/AddCustomer.css";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 const AddTransaction = forwardRef(({ hideModal }, ref) => {
   const { custID } = useParams(),
