@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
-import Slide from "@material-ui/core/Slide";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
+import Button from "@mui/material/Button";
+import Slide from "@mui/material/Slide";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import { useHistory } from "react-router-dom";
 import firebase from "../firebase";
 

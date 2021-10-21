@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import ShowMoreText from "react-show-more-text";
-import ReceiptOutlined from "@material-ui/icons/ReceiptOutlined";
 import { Statistic } from "antd";
 import "../assets/css/TransactionCard.css";
 import moment from "moment";
 import DeleteOutlined from "@ant-design/icons/DeleteOutlined";
-import IconButton from "@material-ui/core/IconButton";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import Loader from "./Loader";
+import IconButton from "@mui/material/IconButton";
+import ReceiptOutlined from "@mui/icons-material/ReceiptOutlined";
 
 function DisplayTransaction({ details, userName, custId }) {
 	const user = useSelector(selectUser),
@@ -28,7 +28,7 @@ function DisplayTransaction({ details, userName, custId }) {
 		const alert = window.confirm(
 			"Are you sure you want to delete this transaction?"
 		);
-    console.log(alert);
+		console.log(alert);
 		if (alert) {
 			mount && setLoading(true);
 			fetch(`${process.env.REACT_APP_API_BASE_URL}/api/deleteTransaction`, {

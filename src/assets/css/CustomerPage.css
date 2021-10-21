@@ -19,7 +19,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 10px;
-  background-color: var(--container-bg);
+  /* background-color: var(--container-bg); */
 }
 
 @media only screen and (max-width: 520px) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "@material-ui/core/Modal";
+import Modal from "@mui/material/Modal";
 import { useHistory } from "react-router";
 import "../assets/css/Contact.css";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
-import Modal from "@material-ui/core/Modal";
+import Avatar from "@mui/material/Avatar";
+import Modal from "@mui/material/Modal";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import { io } from "socket.io-client";
@@ -14,7 +14,7 @@ import HomeStats from "../Components/HomeStats";
 import CustomerLoadingCard from "../Components/CustomerLoadingCard";
 import ForegroundNotification from "../Components/ForegroundNotification";
 import "../assets/css/Home.css";
-import DialogContent from "@material-ui/core/DialogContent";
+import DialogContent from "@mui/material/DialogContent";
 
 function HomePage() {
 	const _isMounted = useRef(true),
@@ -50,51 +50,7 @@ function HomePage() {
 			setCustLoading(true);
 			socket.off();
 		};
-	}, [user]);
-
-	// // // // // // OLD PUSHER CODE NOW USING SOCKET.IO // // // // // //
-	// useEffect(() => {
-	// const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
-	//   cluster: "ap2",
-	// });
-
-	// const userDocChannel = pusher.subscribe("userDoc"),
-	//   customersColChannel = pusher.subscribe("customersCol");
-
-	// userDocChannel.bind("update", ({ data }) => {
-	//   setSent(data?.sent);
-	//   setReceived(data?.received);
-	// });
-	// customersColChannel.bind("update", ({ data }) => {
-	//   setCustomers(data);
-	//   setCustLoading(false);
-	// });
-
-	// fetch(`${process.env.REACT_APP_API_BASE_URL}/api/userDoc`, {
-	//   body: JSON.stringify({ user: user }),
-	//   method: "POST",
-	//   crossDomain: true,
-	//   headers: { "Content-Type": "application/json" },
-	// }).catch((err) => console.log(err));
-
-	// fetch(`${process.env.REACT_APP_API_BASE_URL}/api/customersCol`, {
-	//   body: JSON.stringify({ user: user }),
-	//   method: "POST",
-	//   crossDomain: true,
-	//   headers: { "Content-Type": "application/json" },
-	// }).catch((err) => console.log(err));
-
-	// return () => {
-	//   _isMounted.current = false;
-	//   setCustomers([]);
-	//   setCustLoading(true);
-	//   userDocChannel.unbind_all();
-	//   userDocChannel.unsubscribe();
-	//   customersColChannel.unbind_all();
-	//   customersColChannel.unsubscribe();
-	// };
-	// }, [user]);
-	// // // // // // // // // // // // // // /// // // // // // // // //
+	}, [user]);	
 
 	useEffect(() => {
 		getFcmToken()
@@ -112,7 +68,6 @@ function HomePage() {
 			})
 			.catch((err) => console.log(err));
 	}, [user]);
-	// // // // // // // // // // // // // // // // // // // // //
 
 	return (
 		<div className="home">

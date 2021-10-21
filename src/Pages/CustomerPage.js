@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectUser } from "../redux/userSlice";
-import Modal from "@material-ui/core/Modal";
 
+import Modal from "@mui/material/Modal";
 import AddCard from "../Components/AddCard";
 import AddTransaction from "../Components/AddTransaction";
 import DisplayTransaction from "../Components/DisplayTransaction";
 import TransactionLoadingCard from "../Components/TransactionLoadingCard";
 import HomeStats from "../Components/HomeStats";
 import NotFound from "./NotFound";
-// import Pusher from "pusher-js";
 
 import "../assets/css/CustomerPage.css";
 import { io } from "socket.io-client";
-import DialogContent from "@material-ui/core/DialogContent";
+import DialogContent from "@mui/material/DialogContent";
+import TransactionsTable from "../Components/TransactionsTable";
 
 function CustomerPage() {
 	const { custID } = useParams(),
@@ -69,17 +69,18 @@ function CustomerPage() {
 			<h1 className="subheading">Transactions</h1>
 			<div className="transactions">
 				{transLoading === false ? (
-					<>
-						<AddCard onClick={() => setModalVisible(true)} />
-						{trans.map((t) => (
-							<DisplayTransaction
-								key={t.id}
-								details={t}
-								userName={user?.name}
-								custId={custID}
-							/>
-						))}
-					</>
+					<TransactionsTable transactions={trans} />
+					// <>
+					// 	<AddCard onClick={() => setModalVisible(true)} />
+					// 	{trans.map((t) => (
+					// 		<DisplayTransaction
+					// 			key={t.id}
+					// 			details={t}
+					// 			userName={user?.name}
+					// 			custId={custID}
+					// 		/>
+					// 	))}
+					// </>
 				) : (
 					<TransactionLoadingCard />
 				)}
