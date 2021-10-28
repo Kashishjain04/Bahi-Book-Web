@@ -12,7 +12,7 @@ import AddCustomer from "../Components/AddCustomer";
 import AddCustomerCard from "../Components/AddCard";
 import HomeStats from "../Components/HomeStats";
 import CustomerLoadingCard from "../Components/CustomerLoadingCard";
-import ForegroundNotification from "../Components/ForegroundNotification";
+// import ForegroundNotification from "../Components/ForegroundNotification";
 import "../assets/css/Home.css";
 import DialogContent from "@mui/material/DialogContent";
 
@@ -71,7 +71,7 @@ function HomePage() {
 
 	return (
 		<div className="home">
-			<ForegroundNotification />
+			{/* <ForegroundNotification /> */}
 			<div className="head">
 				<Avatar className="avatar" alt={user.name} src={user.image} />
 				<h2 className="head__text">{user.name}</h2>

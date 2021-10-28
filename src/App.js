@@ -6,6 +6,7 @@ import { login, logout, selectUser } from "./redux/userSlice";
 import { useMediaQuery } from "react-responsive";
 import firebase from "./firebase";
 import "./assets/css/variables.css";
+import ForegroundNotification from "./Components/ForegroundNotification";
 
 const Navbar = lazy(() => import("./Components/Navbar"));
 const ContactPage = lazy(() => import("./Pages/ContactPage"));
@@ -76,12 +77,15 @@ function App() {
 		</Switch>
 	);
 	const appRoute = (
+		<>
+		<ForegroundNotification />
 		<Switch>
 			<Route path="/" exact component={HomePage} />
 			<Route path="/friend/:custID" exact component={CustomerPage} />
 			<Route path="/contact-us" exact component={ContactPage} />
 			<Route path="*" component={NotFound} />
 		</Switch>
+		</>
 	);
 
 	return (
