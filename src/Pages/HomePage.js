@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
 import Modal from "@mui/material/Modal";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
@@ -72,10 +70,11 @@ function HomePage() {
 	return (
 		<div className="home">
 			{/* <ForegroundNotification /> */}
-			<div className="head">
+			{/* Home Page UserName */}
+			{/* <div className="head">
 				<Avatar className="avatar" alt={user.name} src={user.image} />
 				<h2 className="head__text">{user.name}</h2>
-			</div>
+			</div> */}
 			<HomeStats sent={sent} received={received} />
 			<h1 className="subheading">Friends</h1>
 			<div className="customers">
@@ -100,9 +99,6 @@ function HomePage() {
 					<AddCustomer hideModal={() => setModalVisible(false)} />
 				</DialogContent>
 			</Modal>
-			<div className="contactus-link">
-				<Link to="/contact-us">Contact Us</Link>
-			</div>
 		</div>
 	);
 }

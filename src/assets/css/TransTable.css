@@ -1,0 +1,75 @@
+.transTable__container {
+	width: 95%;
+	border: 1px solid var(--container-bg);
+	border-radius: 10px;
+}
+.transTable__inner{
+    width: 100%;
+    border-radius: 10px;
+	overflow-x: scroll;
+}
+.transTable {
+	width: 100%;
+	color: var(--card-text);
+	border-spacing: 0;
+    border-radius: 10px;
+}
+.transTable > thead {
+	background-color: var(--container-bg);
+}
+.transTable th {
+	padding: 0.75rem;
+}
+.transTable__row td {
+	padding: 0.5rem;
+	text-align: center;
+}
+.transTable__row.row-0 {
+	background-color: var(--card-bg);
+}
+.transTable__row.row-1 {
+	background-color: var(--container-bg);
+}
+.transTable__row td,
+.transTable th {
+	border-right: 1px solid var(--border-color);
+}
+.transTable__row td:last-of-type,
+.transTable th:last-of-type {
+	border-right: 0;
+}
+.transTable__row td.time {
+	color: var(--secondary-text);
+    min-width: 100px;
+}
+.transTable__row td.gave {
+	color: var(--negative);
+}
+.transTable__row td.got {
+	color: var(--positive);
+}
+.transTable__row td.desc {
+	max-width: 40%;
+}
+.transTable__row td .deleteBtn * {
+	color: var(--negative);
+}
+.transTable__row td .deleteBtn {
+	font-size: 16px;
+}
+.transTable__footer {
+	border-top: 1px solid var(--border-color);
+	padding: 0 0.75rem;
+	background-color: var(--container-bg);
+	display: flex;
+	justify-content: flex-end;
+	column-gap: 0.5rem;
+}
+.transTable__footer > .icons {
+	display: flex;
+    align-items: center;
+}
+.transTable__footer > .icons .pageIcon {
+	color: var(--card-text);
+	font-size: 16px;
+}

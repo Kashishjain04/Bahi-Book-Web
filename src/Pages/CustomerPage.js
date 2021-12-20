@@ -13,6 +13,7 @@ import "../assets/css/CustomerPage.css";
 import { io } from "socket.io-client";
 import DialogContent from "@mui/material/DialogContent";
 import TransactionsTable from "../Components/TransactionsTable";
+import TransTable from "../Components/TransTable";
 
 function CustomerPage() {
 	const { custID } = useParams(),
@@ -68,7 +69,8 @@ function CustomerPage() {
 			<div className="transactions">
 				<AddCard className="trans" onClick={() => setModalVisible(true)} />
 				{!transLoading && (
-					<TransactionsTable user={user} custId={custID} transactions={trans} />
+					<TransTable user={user} custId={custID} transactions={trans} />
+					// <TransactionsTable user={user} custId={custID} transactions={trans} />
 				)}
 			</div>
 			<Modal

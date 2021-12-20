@@ -44,16 +44,3 @@
     right: 5px;
   }
 }
-
-.contactus-link {
-  width: fit-content;
-  margin: 30px;
-  margin-left: auto;  
-}
-
-.contactus-link > a {
-  color: blue !important;
-  border-bottom: 1.5px solid blue;
-  padding-bottom: .5px;
-  font-size: 20px;
-}

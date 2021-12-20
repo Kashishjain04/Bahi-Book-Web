@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-evenly;
   font-size: 1.2rem;
-  background-color: var(--container-bg);
+  /* background-color: var(--container-bg); */
   padding: 10px;
 }
 
@@ -11,8 +11,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--card-bg);
-  border-radius: 5px;
+  /* background-color: var(--card-bg); */
+  /* background-color: var(--container-bg); */
+  border: 2px solid var(--container-bg);
+  /* box-shadow: 0 3px 5px -1px var(--shadow-color); */
+  border-radius: 10px;
   width: 26vw;
   height: 7vw;
   padding: 10px;
