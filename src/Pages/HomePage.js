@@ -86,7 +86,12 @@ function HomePage() {
 						))}
 					</>
 				) : (
+					<>
 					<CustomerLoadingCard />
+					<CustomerLoadingCard />
+					<CustomerLoadingCard />
+					<CustomerLoadingCard />
+					</>
 				)}
 			</div>
 			<Modal

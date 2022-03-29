@@ -31,11 +31,29 @@
 }
 
 .customers {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 20px;
   background-color: var(--container-bg);
+  grid-gap: 20px;
+}
+
+@media only screen and (max-width: 400px) {
+  .customers {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 750px) and (min-width: 400px) {
+  .customers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 970px) and (min-width: 750px) {
+  .customers {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media only screen and (max-width: 520px) {
